@@ -24,18 +24,18 @@ local palette = {
     yoruDiffAdd = "#1F2A1F", yoruDiffChange = "#1F2533", yoruDiffDelete = "#2F1C1E", yoruDiffText = "#32405A",
     yoruGitAdd = "#94AD7E", yoruGitChange = "#C4AE84", yoruGitDelete = "#D9787F",
 
-    -- kami (紙, paper): the light variant, a low-glare parchment
-    kamiBg0 = "#DDD8C6", kamiBgM2 = "#E0DBCA", kamiBgM1 = "#E4DFCE",
-    kamiBg = "#E8E3D3", kamiBgP1 = "#E3DDCC", kamiBgP2 = "#DFD9C7", kamiBg3 = "#D6D0BC",
-    kamiVisual = "#C5CFE0", kamiSearch = "#B3C4DE", kamiBorder = "#A8A290", kamiNontext = "#9C9686",
-    kamiSpecial = "#625C6C",
-    kamiFg = "#2E2D36", kamiFgDim = "#4A4955", kamiComment = "#636059",
-    kamiKeyword = "#5A4190", kamiFunc = "#2F5086", kamiString = "#3B5E20", kamiType = "#255D53",
-    kamiNumber = "#893857", kamiConstant = "#854718", kamiField = "#6F5110", kamiOperator = "#675324",
-    kamiBuiltin = "#95313D", kamiPunct = "#4E576D", kamiParam = "#595071", kamiEscape = "#265B71",
-    kamiError = "#A52232", kamiWarn = "#8F4C0C", kamiInfo = "#235B84", kamiHint = "#255F54",
-    kamiDiffAdd = "#D3E0C2", kamiDiffChange = "#D2DAE6", kamiDiffDelete = "#EBCFCF", kamiDiffText = "#B9C8DE",
-    kamiGitAdd = "#3B6E22", kamiGitChange = "#6F5110", kamiGitDelete = "#A8323F",
+    -- kami (紙, paper): the light variant, a mid-brightness paper between dark and light
+    kamiBg0 = "#C8C2B0", kamiBgM2 = "#CBC5B4", kamiBgM1 = "#CEC8B8",
+    kamiBg = "#D2CCBC", kamiBgP1 = "#CDC7B6", kamiBgP2 = "#CAC3B1", kamiBg3 = "#C2BBA8",
+    kamiVisual = "#B2BAC8", kamiSearch = "#A2B0C6", kamiBorder = "#989280", kamiNontext = "#8D8777",
+    kamiSpecial = "#5A5463",
+    kamiFg = "#292830", kamiFgDim = "#3F3E49", kamiComment = "#595750",
+    kamiKeyword = "#523B83", kamiFunc = "#2B497A", kamiString = "#36561D", kamiType = "#22564D",
+    kamiNumber = "#7F3451", kamiConstant = "#7B4116", kamiField = "#674B0F", kamiOperator = "#604E22",
+    kamiBuiltin = "#892D38", kamiPunct = "#485064", kamiParam = "#514967", kamiEscape = "#235367",
+    kamiError = "#981F2E", kamiWarn = "#82450B", kamiInfo = "#20547A", kamiHint = "#23594F",
+    kamiDiffAdd = "#BFC9AD", kamiDiffChange = "#BEC4CD", kamiDiffDelete = "#D5BAB8", kamiDiffText = "#A7B4C6",
+    kamiGitAdd = "#34611E", kamiGitChange = "#705210", kamiGitDelete = "#9D2F3B",
 }
 
 local M = {}

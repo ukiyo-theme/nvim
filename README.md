@@ -8,14 +8,14 @@ It has three variants:
 |---|---|---|
 | `umi` (sea) | `#1A1A22` | The default dark theme. Ink-blue background, warm text. |
 | `yoru` (night) | `#161514` | Darker and warmer, with less saturated colors. |
-| `kami` (paper) | `#E8E3D3` | Light theme on a low-glare parchment background. |
+| `kami` (paper) | `#D2CCBC` | Light theme at about 60% brightness, between a dark and a light theme. |
 
 ## Differences from Kanagawa
 
-- Comments are readable. They are 4.9:1 in every variant, compared with 3.3:1 in Kanagawa Wave.
-- Syntax colors sit between 5.6:1 and 10.8:1. Kanagawa's keyword violet is 4.7:1.
+- Comments are readable. They are at least 4.5:1 in every variant, compared with 3.3:1 in Kanagawa Wave.
+- Syntax colors are at least 5:1 in every variant. Kanagawa's keyword violet is 4.7:1.
 - Keywords are a lighter lilac (`#C4A8F5` in umi), so they don't blend into the background or into function names. They aren't italic by default.
-- The light variant isn't white or yellow. It has a muted parchment background, soft ink text, and darker syntax colors, so it stays readable without glare.
+- The light variant isn't white or yellow. Its background is a muted paper tone at about 60% brightness, dim enough for people who prefer dark themes.
 - The hue order is the same in all three variants. Switching between dark and light keeps keywords violet, functions blue and strings green.
 
 Run `python3 scripts/contrast.py` to print the contrast table for every variant.
