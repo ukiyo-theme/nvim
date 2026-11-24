@@ -18,7 +18,7 @@ It has three variants:
 - The light variant isn't white or yellow. Its background is a muted paper tone at about 60% brightness, dim enough for people who prefer dark themes.
 - The hue order is the same in all three variants. Switching between dark and light keeps keywords violet, functions blue and strings green.
 
-Run `python3 scripts/contrast.py` to print the contrast table for every variant.
+The colors come from [ukiyo-theme/palette](https://github.com/ukiyo-theme/palette), which also has the contrast checks.
 
 ## Requirements
 
@@ -30,7 +30,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-    "rishitxyz/ukiyo.nvim",
+    "ukiyo-theme/nvim",
+    name = "ukiyo",
     lazy = false,
     priority = 1000,
     config = function()
@@ -76,7 +77,7 @@ require("ukiyo").setup({
 })
 ```
 
-`colors.palette` holds the raw hex values in `lua/ukiyo/colors.lua`. `colors.theme` maps them to roles such as `syn.keyword` or `ui.bg_visual`; see `lua/ukiyo/themes.lua` for the full list.
+`colors.palette` holds the raw hex values in `lua/ukiyo/palette.lua`, keyed as variant plus role (`umiKeyword`, `kamiBgP2`). `colors.theme` maps them to roles such as `syn.keyword` or `ui.bg_visual`; see `lua/ukiyo/themes.lua` for the full list.
 
 ### Examples
 
@@ -111,6 +112,17 @@ local palette = colors.palette
 ```
 
 A lualine theme is included: `options = { theme = "ukiyo" }`.
+
+## Changing the colors
+
+Don't edit `lua/ukiyo/palette.lua` by hand. It is generated from `palette.json` in [ukiyo-theme/palette](https://github.com/ukiyo-theme/palette). Change the color there, run its contrast check, then regenerate this file:
+
+```sh
+python3 ../palette/scripts/check.py
+python3 ../palette/scripts/build.py nvim --out lua/ukiyo/palette.lua
+```
+
+The paths assume both repos are cloned side by side.
 
 ## Credits
 

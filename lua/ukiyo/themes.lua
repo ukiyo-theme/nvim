@@ -104,9 +104,9 @@ return {
                 bg_p1      = palette.umiBgP1,
                 bg_p2      = palette.umiBgP2,
 
-                special    = palette.umiSpecial,
-                nontext    = palette.umiBorder,
-                whitespace = palette.umiBorder,
+                special    = palette.umiUiSpecial,
+                nontext    = palette.umiNontext,
+                whitespace = palette.umiNontext,
 
                 bg_search  = palette.umiSearch,
                 bg_visual  = palette.umiVisual,
@@ -206,9 +206,9 @@ return {
                 bg_p1      = palette.yoruBgP1,
                 bg_p2      = palette.yoruBgP2,
 
-                special    = palette.yoruSpecial,
-                nontext    = palette.yoruBorder,
-                whitespace = palette.yoruBorder,
+                special    = palette.yoruUiSpecial,
+                nontext    = palette.yoruNontext,
+                whitespace = palette.yoruNontext,
 
                 bg_search  = palette.yoruSearch,
                 bg_visual  = palette.yoruVisual,
@@ -308,7 +308,7 @@ return {
                 bg_p1      = palette.kamiBgP1,
                 bg_p2      = palette.kamiBgP2,
 
-                special    = palette.kamiSpecial,
+                special    = palette.kamiUiSpecial,
                 nontext    = palette.kamiNontext,
                 whitespace = palette.kamiNontext,
 
