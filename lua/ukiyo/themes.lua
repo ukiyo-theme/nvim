@@ -143,7 +143,7 @@ return {
                 deprecated = palette.umiComment,
                 comment    = palette.umiComment,
                 punct      = palette.umiPunct,
-                special1   = palette.umiEscape,
+                special1   = palette.umiSpecial,
                 special2   = palette.umiBuiltin,
                 special3   = palette.umiBuiltin,
             },
@@ -180,7 +180,7 @@ return {
                 palette.umiField, -- bright yellow
                 palette.umiInfo, -- bright blue
                 palette.umiParam, -- bright magenta
-                palette.umiEscape, -- bright cyan
+                palette.umiSpecial, -- bright cyan
                 palette.umiFg, -- bright white
                 palette.umiConstant, -- extended color 1
                 palette.umiError, -- extended color 2
@@ -245,7 +245,7 @@ return {
                 deprecated = palette.yoruComment,
                 comment    = palette.yoruComment,
                 punct      = palette.yoruPunct,
-                special1   = palette.yoruEscape,
+                special1   = palette.yoruSpecial,
                 special2   = palette.yoruBuiltin,
                 special3   = palette.yoruBuiltin,
             },
@@ -282,7 +282,7 @@ return {
                 palette.yoruField, -- bright yellow
                 palette.yoruInfo, -- bright blue
                 palette.yoruParam, -- bright magenta
-                palette.yoruEscape, -- bright cyan
+                palette.yoruSpecial, -- bright cyan
                 palette.yoruFg, -- bright white
                 palette.yoruConstant, -- extended color 1
                 palette.yoruError, -- extended color 2
@@ -347,7 +347,7 @@ return {
                 deprecated = palette.kamiComment,
                 comment    = palette.kamiComment,
                 punct      = palette.kamiPunct,
-                special1   = palette.kamiEscape,
+                special1   = palette.kamiSpecial,
                 special2   = palette.kamiBuiltin,
                 special3   = palette.kamiBuiltin,
             },
@@ -384,7 +384,7 @@ return {
                 palette.kamiField, -- bright yellow
                 palette.kamiInfo, -- bright blue
                 palette.kamiParam, -- bright magenta
-                palette.kamiEscape, -- bright cyan
+                palette.kamiSpecial, -- bright cyan
                 palette.kamiBg0, -- bright white
                 palette.kamiConstant, -- extended color 1
                 palette.kamiError, -- extended color 2

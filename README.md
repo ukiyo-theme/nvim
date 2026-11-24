@@ -119,7 +119,7 @@ Don't edit `lua/ukiyo/palette.lua` by hand. It is generated from `palette.json` 
 
 ```sh
 python3 ../palette/scripts/check.py
-python3 ../palette/scripts/build.py nvim --out lua/ukiyo/palette.lua
+python3 ../palette/scripts/build.py nvim --out .
 ```
 
 The paths assume both repos are cloned side by side.
