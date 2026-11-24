@@ -1,30 +1,36 @@
 # ukiyo.nvim
 
-A Neovim colorscheme based on [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim), rebuilt around readability. Every color is checked for WCAG contrast against its background.
+A Neovim colorscheme based on [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim).
 
-It has three variants:
+[View the palette](https://ukiyo-theme.github.io/palette/)
 
-| Variant | Background | Style |
-|---|---|---|
-| `umi` (sea) | `#1A1A22` | The default dark theme. Ink-blue background, warm text. |
-| `yoru` (night) | `#161514` | Darker and warmer, with less saturated colors. |
-| `kami` (paper) | `#D2CCBC` | Light theme at about 60% brightness, between a dark and a light theme. |
+## Variants
 
-## Differences from Kanagawa
+| Name | Appearance | Background | Description |
+|---|---|---|---|
+| `umi` (sea) | Dark (default) | `#1A1A22` | Ink-blue background with warm text. |
+| `yoru` (night) | Dark | `#161514` | Darker and warmer than umi, with less saturated colors. |
+| `kami` (paper) | Light | `#D2CCBC` | Muted paper background at about 60% brightness. |
 
-- Comments are readable. They are at least 4.5:1 in every variant, compared with 3.3:1 in Kanagawa Wave.
-- Syntax colors are at least 5:1 in every variant. Kanagawa's keyword violet is 4.7:1.
-- Keywords are a lighter lilac (`#C4A8F5` in umi), so they don't blend into the background or into function names. They aren't italic by default.
-- The light variant isn't white or yellow. Its background is a muted paper tone at about 60% brightness, dim enough for people who prefer dark themes.
-- The hue order is the same in all three variants. Switching between dark and light keeps keywords violet, functions blue and strings green.
+### umi
 
-The colors come from [ukiyo-theme/palette](https://github.com/ukiyo-theme/palette), which also has the contrast checks.
+![umi palette preview](https://raw.githubusercontent.com/ukiyo-theme/palette/main/assets/umi.svg)
+
+### yoru
+
+![yoru palette preview](https://raw.githubusercontent.com/ukiyo-theme/palette/main/assets/yoru.svg)
+
+### kami
+
+![kami palette preview](https://raw.githubusercontent.com/ukiyo-theme/palette/main/assets/kami.svg)
 
 ## Requirements
 
 Neovim 0.9 or newer, with `termguicolors` (ukiyo turns it on).
 
-## Installation
+## How to use
+
+### Installation
 
 With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -40,18 +46,34 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-## Usage
+To install without a plugin manager, clone the repository into Neovim's
+`pack/ukiyo/start/ukiyo` directory under `stdpath("data")`. On macOS and Linux
+with the default app name, run:
 
-```vim
-colorscheme ukiyo        " follows 'background': umi when dark, kami when light
-colorscheme ukiyo-umi
-colorscheme ukiyo-yoru
-colorscheme ukiyo-kami
+```sh
+git clone https://github.com/ukiyo-theme/nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/pack/ukiyo/start/ukiyo"
 ```
 
-## Configuration
+Restart Neovim to load the package.
 
-You only need `setup` to change the defaults. Call it before `colorscheme`.
+### Selecting a variant
+
+```lua
+vim.cmd.colorscheme("ukiyo")
+```
+
+`ukiyo` follows `vim.o.background`. By default it uses `umi` for `"dark"`
+and `kami` for `"light"`. To select a variant directly, use one of these calls.
+
+```lua
+vim.cmd.colorscheme("ukiyo-umi")
+vim.cmd.colorscheme("ukiyo-yoru")
+vim.cmd.colorscheme("ukiyo-kami")
+```
+
+### Configuration
+
+You only need `setup` to change the defaults. Call it before `colorscheme`. The defaults are shown below.
 
 ```lua
 require("ukiyo").setup({
@@ -69,7 +91,7 @@ require("ukiyo").setup({
         palette = {},            -- override raw colors, e.g. { umiKeyword = "#D0B4FF" }
         theme = { umi = {}, yoru = {}, kami = {}, all = {} },
     },
-    overrides = function(colors) -- add or change highlight groups
+    overrides = function()       -- add or change highlight groups
         return {}
     end,
     theme = "umi",               -- used when 'background' has no mapping
@@ -79,29 +101,30 @@ require("ukiyo").setup({
 
 `colors.palette` holds the raw hex values in `lua/ukiyo/palette.lua`, keyed as variant plus role (`umiKeyword`, `kamiBgP2`). `colors.theme` maps them to roles such as `syn.keyword` or `ui.bg_visual`; see `lua/ukiyo/themes.lua` for the full list.
 
-### Examples
+### Overriding colors and highlights
 
-Make keywords bold:
-
-```lua
-overrides = function(colors)
-    return {
-        Keyword = { fg = colors.theme.syn.keyword, bold = true },
-        ["@keyword"] = { fg = colors.theme.syn.keyword, bold = true },
-    }
-end
-```
-
-Color `return` and `throw` like other keywords instead of red:
+This example changes umi's keyword color and makes keywords bold in every
+variant. The highlight overrides use the resolved keyword color for the
+active variant.
 
 ```lua
-overrides = function(colors)
-    return {
-        ["@keyword.return"] = { fg = colors.theme.syn.keyword },
-        ["@keyword.exception"] = { fg = colors.theme.syn.keyword, bold = true },
-    }
-end
+require("ukiyo").setup({
+    colors = {
+        palette = { umiKeyword = "#D0B4FF" },
+    },
+    overrides = function(colors)
+        return {
+            Keyword = { fg = colors.theme.syn.keyword, bold = true },
+            ["@keyword"] = { fg = colors.theme.syn.keyword, bold = true },
+        }
+    end,
+})
+vim.cmd.colorscheme("ukiyo")
 ```
+
+If you enable `compile = true`, run `:UkiyoCompile` after loading your changed
+configuration. It rebuilds the cached highlights for all three variants and
+reloads the active variant.
 
 ### Reading colors from other plugins
 
@@ -111,11 +134,11 @@ local theme = colors.theme
 local palette = colors.palette
 ```
 
-A lualine theme is included: `options = { theme = "ukiyo" }`.
+To use the included lualine theme, set `options = { theme = "ukiyo" }`.
 
 ## Changing the colors
 
-Don't edit `lua/ukiyo/palette.lua` by hand. It is generated from `palette.json` in [ukiyo-theme/palette](https://github.com/ukiyo-theme/palette). Change the color there, run its contrast check, then regenerate this file:
+`palette.json` in the palette repository is the source of truth for the colors and their contrast checks. To update the generated `lua/ukiyo/palette.lua`, edit `palette.json` and run the commands below. [ukiyo-theme/palette](https://github.com/ukiyo-theme/palette)
 
 ```sh
 python3 ../palette/scripts/check.py
