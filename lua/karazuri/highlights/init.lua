@@ -11,14 +11,14 @@ function M.highlight(highlights, termcolors)
     end
 end
 
----@param colors UkiyoColors
----@param config? UkiyoConfig
+---@param colors karazuriColors
+---@param config? karazuriConfig
 function M.setup(colors, config)
-    config = config or require("ukiyo").config
+    config = config or require("karazuri").config
 
     local highlights = {}
     for _, highlight in ipairs({ "editor", "syntax", "treesitter", "lsp", "plugins" }) do
-        local mod = require("ukiyo.highlights." .. highlight)
+        local mod = require("karazuri.highlights." .. highlight)
         for hl, spec in pairs(mod.setup(colors, config)) do
             highlights[hl] = spec
         end

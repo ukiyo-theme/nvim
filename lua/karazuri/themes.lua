@@ -1,4 +1,4 @@
-local c = require("ukiyo.lib.color")
+local c = require("karazuri.lib.color")
 
 --TODO:
 --PreProc needs its own color

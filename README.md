@@ -1,8 +1,8 @@
-# ukiyo.nvim
+# karazuri.nvim
 
 A Neovim colorscheme based on [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim).
 
-[View the palette](https://ukiyo-theme.github.io/palette/)
+[View the palette](https://karazuri.github.io/palette/)
 
 ## Variants
 
@@ -14,19 +14,19 @@ A Neovim colorscheme based on [kanagawa.nvim](https://github.com/rebelot/kanagaw
 
 ### umi
 
-![umi palette preview](https://raw.githubusercontent.com/ukiyo-theme/palette/main/assets/umi.svg)
+![umi palette preview](https://raw.githubusercontent.com/karazuri/palette/main/assets/umi.svg)
 
 ### yoru
 
-![yoru palette preview](https://raw.githubusercontent.com/ukiyo-theme/palette/main/assets/yoru.svg)
+![yoru palette preview](https://raw.githubusercontent.com/karazuri/palette/main/assets/yoru.svg)
 
 ### kami
 
-![kami palette preview](https://raw.githubusercontent.com/ukiyo-theme/palette/main/assets/kami.svg)
+![kami palette preview](https://raw.githubusercontent.com/karazuri/palette/main/assets/kami.svg)
 
 ## Requirements
 
-Neovim 0.9 or newer, with `termguicolors` (ukiyo turns it on).
+Neovim 0.9 or newer, with `termguicolors` (karazuri turns it on).
 
 ## How to use
 
@@ -36,22 +36,22 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-    "ukiyo-theme/nvim",
-    name = "ukiyo",
+    "karazuri/nvim",
+    name = "karazuri",
     lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme("ukiyo")
+        vim.cmd.colorscheme("karazuri")
     end,
 }
 ```
 
 To install without a plugin manager, clone the repository into Neovim's
-`pack/ukiyo/start/ukiyo` directory under `stdpath("data")`. On macOS and Linux
+`pack/karazuri/start/karazuri` directory under `stdpath("data")`. On macOS and Linux
 with the default app name, run:
 
 ```sh
-git clone https://github.com/ukiyo-theme/nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/pack/ukiyo/start/ukiyo"
+git clone https://github.com/karazuri/nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/pack/karazuri/start/karazuri"
 ```
 
 Restart Neovim to load the package.
@@ -59,16 +59,16 @@ Restart Neovim to load the package.
 ### Selecting a variant
 
 ```lua
-vim.cmd.colorscheme("ukiyo")
+vim.cmd.colorscheme("karazuri")
 ```
 
-`ukiyo` follows `vim.o.background`. By default it uses `umi` for `"dark"`
+`karazuri` follows `vim.o.background`. By default it uses `umi` for `"dark"`
 and `kami` for `"light"`. To select a variant directly, use one of these calls.
 
 ```lua
-vim.cmd.colorscheme("ukiyo-umi")
-vim.cmd.colorscheme("ukiyo-yoru")
-vim.cmd.colorscheme("ukiyo-kami")
+vim.cmd.colorscheme("karazuri-umi")
+vim.cmd.colorscheme("karazuri-yoru")
+vim.cmd.colorscheme("karazuri-kami")
 ```
 
 ### Configuration
@@ -76,8 +76,8 @@ vim.cmd.colorscheme("ukiyo-kami")
 You only need `setup` to change the defaults. Call it before `colorscheme`. The defaults are shown below.
 
 ```lua
-require("ukiyo").setup({
-    compile = false,             -- cache compiled highlights; run :UkiyoCompile after config changes
+require("karazuri").setup({
+    compile = false,             -- cache compiled highlights; run :lua require("karazuri").recompile() after config changes
     undercurl = true,
     commentStyle = { italic = true },
     functionStyle = {},
@@ -99,7 +99,7 @@ require("ukiyo").setup({
 })
 ```
 
-`colors.palette` holds the raw hex values in `lua/ukiyo/palette.lua`, keyed as variant plus role (`umiKeyword`, `kamiBgP2`). `colors.theme` maps them to roles such as `syn.keyword` or `ui.bg_visual`; see `lua/ukiyo/themes.lua` for the full list.
+`colors.palette` holds the raw hex values in `lua/karazuri/palette.lua`, keyed as variant plus role (`umiKeyword`, `kamiBgP2`). `colors.theme` maps them to roles such as `syn.keyword` or `ui.bg_visual`; see `lua/karazuri/themes.lua` for the full list.
 
 ### Overriding colors and highlights
 
@@ -108,7 +108,7 @@ variant. The highlight overrides use the resolved keyword color for the
 active variant.
 
 ```lua
-require("ukiyo").setup({
+require("karazuri").setup({
     colors = {
         palette = { umiKeyword = "#D0B4FF" },
     },
@@ -119,26 +119,26 @@ require("ukiyo").setup({
         }
     end,
 })
-vim.cmd.colorscheme("ukiyo")
+vim.cmd.colorscheme("karazuri")
 ```
 
-If you enable `compile = true`, run `:UkiyoCompile` after loading your changed
+If you enable `compile = true`, run `:lua require("karazuri").recompile()` after loading your changed
 configuration. It rebuilds the cached highlights for all three variants and
 reloads the active variant.
 
 ### Reading colors from other plugins
 
 ```lua
-local colors = require("ukiyo.colors").setup() -- for the currently loaded variant
+local colors = require("karazuri.colors").setup() -- for the currently loaded variant
 local theme = colors.theme
 local palette = colors.palette
 ```
 
-To use the included lualine theme, set `options = { theme = "ukiyo" }`.
+To use the included lualine theme, set `options = { theme = "karazuri" }`.
 
 ## Changing the colors
 
-`palette.json` in the palette repository is the source of truth for the colors and their contrast checks. To update the generated `lua/ukiyo/palette.lua`, edit `palette.json` and run the commands below. [ukiyo-theme/palette](https://github.com/ukiyo-theme/palette)
+`palette.json` in the palette repository is the source of truth for the colors and their contrast checks. To update the generated `lua/karazuri/palette.lua`, edit `palette.json` and run the commands below. [karazuri/palette](https://github.com/karazuri/palette)
 
 ```sh
 python3 ../palette/scripts/check.py
@@ -149,4 +149,4 @@ The paths assume both repos are cloned side by side.
 
 ## Credits
 
-ukiyo.nvim is a fork of [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) by Tommaso Laurenzi, released under the MIT license. The plugin structure and highlight group coverage come from Kanagawa. The palettes are new.
+karazuri.nvim is a fork of [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) by Tommaso Laurenzi, released under the MIT license. The plugin structure and highlight group coverage come from Kanagawa. The palettes are new.

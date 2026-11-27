@@ -1,11 +1,11 @@
--- local c = require("ukiyo.color")
+-- local c = require("karazuri.color")
 local M = {}
 
----@param colors UkiyoColors
----@param config? UkiyoConfig
+---@param colors karazuriColors
+---@param config? karazuriConfig
 function M.setup(colors, config)
     local theme = colors.theme
-    config = config or require("ukiyo").config
+    config = config or require("karazuri").config
 
     return {
         -- *Comment	any comment

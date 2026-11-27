@@ -1,8 +1,8 @@
 local M = {}
----@param colors UkiyoColors
----@param config? UkiyoConfig
+---@param colors karazuriColors
+---@param config? karazuriConfig
 function M.setup(colors, config)
-    config = config or require("ukiyo").config
+    config = config or require("karazuri").config
     local theme = colors.theme
     return {
         -- ["@lsp.type.class"] = { link = "Structure" },

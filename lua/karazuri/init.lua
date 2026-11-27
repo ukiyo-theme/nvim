@@ -2,11 +2,11 @@ local M = {}
 
 ---@alias ColorSpec string RGB Hex string
 ---@alias ColorTable table<string, ColorSpec>
----@alias UkiyoColorsSpec { palette: ColorTable, theme: ColorTable }
----@alias UkiyoColors { palette: PaletteColors, theme: ThemeColors }
+---@alias karazuriColorsSpec { palette: ColorTable, theme: ColorTable }
+---@alias karazuriColors { palette: PaletteColors, theme: ThemeColors }
 
 --- default config
----@class UkiyoConfig
+---@class karazuriConfig
 M.config = {
     undercurl = true,
     commentStyle = { italic = true },
@@ -18,7 +18,7 @@ M.config = {
     dimInactive = false,
     terminalColors = true,
     colors = { theme = { umi = {}, yoru = {}, kami = {}, all = {} }, palette = {} },
-    ---@type fun(colors: UkiyoColorsSpec): table<string, table>
+    ---@type fun(colors: karazuriColorsSpec): table<string, table>
     overrides = function()
         return {}
     end,
@@ -34,19 +34,19 @@ local function check_config(config)
 end
 
 --- update global configuration with user settings
----@param config? UkiyoConfig user configuration
+---@param config? karazuriConfig user configuration
 function M.setup(config)
     if check_config(config) then
         M.config = vim.tbl_deep_extend("force", M.config, config or {})
     else
-        vim.notify("Ukiyo: Errors found while loading user config. Using default config.", vim.log.levels.ERROR)
+        vim.notify("karazuri: Errors found while loading user config. Using default config.", vim.log.levels.ERROR)
     end
 end
 
 --- load the colorscheme
 ---@param theme? string
 function M.load(theme)
-    local utils = require("ukiyo.utils")
+    local utils = require("karazuri.utils")
 
     theme = theme or M.config.background[vim.o.background] or M.config.theme
     M._CURRENT_THEME = theme
@@ -55,7 +55,7 @@ function M.load(theme)
         vim.cmd("hi clear")
     end
 
-    vim.g.colors_name = "ukiyo"
+    vim.g.colors_name = "karazuri"
     vim.o.termguicolors = true
 
     if M.config.compile then
@@ -66,30 +66,30 @@ function M.load(theme)
         M.compile()
         utils.load_compiled(theme)
     else
-        local colors = require("ukiyo.colors").setup({ theme = theme, colors = M.config.colors })
-        local highlights = require("ukiyo.highlights").setup(colors, M.config)
-        require("ukiyo.highlights").highlight(highlights, M.config.terminalColors and colors.theme.term or {})
+        local colors = require("karazuri.colors").setup({ theme = theme, colors = M.config.colors })
+        local highlights = require("karazuri.highlights").setup(colors, M.config)
+        require("karazuri.highlights").highlight(highlights, M.config.terminalColors and colors.theme.term or {})
     end
 end
 
 function M.compile()
-    for theme, _ in pairs(require("ukiyo.themes")) do
-        local colors = require("ukiyo.colors").setup({ theme = theme, colors = M.config.colors })
-        local highlights = require("ukiyo.highlights").setup(colors, M.config)
-        require("ukiyo.utils").compile(theme, highlights, M.config.terminalColors and colors.theme.term or {})
+    for theme, _ in pairs(require("karazuri.themes")) do
+        local colors = require("karazuri.colors").setup({ theme = theme, colors = M.config.colors })
+        local highlights = require("karazuri.highlights").setup(colors, M.config)
+        require("karazuri.utils").compile(theme, highlights, M.config.terminalColors and colors.theme.term or {})
     end
 end
 
-vim.api.nvim_create_user_command("UkiyoCompile", function()
+function M.recompile()
     for mod, _ in pairs(package.loaded) do
-        if mod:match("^ukiyo%.") then
+        if mod:match("^karazuri%.") then
             package.loaded[mod] = nil
         end
     end
     M.compile()
-    vim.notify("Ukiyo: compiled successfully!", vim.log.levels.INFO)
+    vim.notify("karazuri: compiled successfully!", vim.log.levels.INFO)
     M.load(M._CURRENT_THEME)
     vim.api.nvim_exec_autocmds("ColorScheme", { modeline = false })
-end, {})
+end
 
 return M
